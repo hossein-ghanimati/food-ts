@@ -13,7 +13,7 @@ const getMenuCategories = async () => {
     `
   })
   const categories: MenuCategoryType[] = response?.data?.categories;
-  console.log("Categories =>", categories);
+  console.log("Menu Categories =>", categories);
   
   return categories || null
 }
