@@ -33,7 +33,7 @@ const sendApiReq = (includeAuthorization = false) => {
   
   
 
-  return apiReq
+  return apiReq.post
 
 }
 
