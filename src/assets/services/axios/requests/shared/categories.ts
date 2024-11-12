@@ -1,11 +1,20 @@
-import CategoryType from "@/assets/types/share/category.type";
+import {CategoryType} from "@/assets/types/shared/category.type";
 import sendApiReq from "../../configs/apiReq";
 
 const getCategories = async () => {
-  const response = await sendApiReq().get("/category")
-  const courses: CategoryType[] = response.data;
+  const response = await sendApiReq()("/graphql", {
+    query: `
+      query {
+        categories {
+          title,
+          icon
+        }
+      }
+    `
+  })
+  const categories: CategoryType[] = response.data;
 
-  return response.status < 300 ? courses : null
+  return response.status < 300 ? categories : null
 }
 
 export {

@@ -7,7 +7,7 @@ const sendApiReq = (includeAuthorization = false) => {
   
 
   const apiReq = axios.create({
-    baseURL: 'http://192.168.78.80:4000/v1',
+    baseURL: 'https://sabzlearn-graphql.iran.liara.run',
   });
 
   apiReq.interceptors.request.use((config) => {
@@ -23,7 +23,7 @@ const sendApiReq = (includeAuthorization = false) => {
   apiReq.interceptors.response.use(
     (response) => {
       console.log(`${response.config.url?.slice(1)} ${response.config.method?.toUpperCase()} response =>`, response);
-      return response    
+      return response.data.data    
     },
     err => {
       console.warn("Your Req Has An Err :", err)
