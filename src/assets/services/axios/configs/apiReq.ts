@@ -22,12 +22,11 @@ const sendApiReq = (includeAuthorization = false) => {
 
   apiReq.interceptors.response.use(
     (response) => {
-      console.log(`${response.config.url?.slice(1)} ${response.config.method?.toUpperCase()} response =>`, response);
-      return response.data.data    
+      return response.data    
     },
     err => {
       console.warn("Your Req Has An Err :", err)
-      return Promise.reject(err)
+      return null
     }
   )
   

@@ -12,9 +12,10 @@ const getCategories = async () => {
       }
     `
   })
-  const categories: CategoryType[] = response.data;
-
-  return response.status < 300 ? categories : null
+  const categories: CategoryType[] = response?.data?.categories;
+  console.log("Categories =>", categories);
+  
+  return categories || null
 }
 
 export {
