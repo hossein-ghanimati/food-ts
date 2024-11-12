@@ -1,7 +1,7 @@
-import {CategoryType, MenuCategoryType} from "@/assets/types/shared/category.type";
+import { MenuCategoryType} from "@/assets/types/shared/category.type";
 import sendApiReq from "../../configs/apiReq";
 
-const getCategories = async () => {
+const getMenuCategories = async () => {
   const response = await sendApiReq()("/graphql", {
     query: `
       query {
@@ -19,5 +19,5 @@ const getCategories = async () => {
 }
 
 export {
-  getCategories
+  getMenuCategories
 }

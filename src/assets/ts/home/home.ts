@@ -1,9 +1,9 @@
-import { getCategories } from "@/assets/services/axios/requests/shared/categories.reqs"
-import { insertCategoris } from "./funcs/home"
+import { getMenuCategories } from "@/assets/services/axios/requests/shared/categories.reqs"
+import { insertMenuCategoris } from "./funcs/home"
 
-const renderCategories = async () => {
-  const categories = await getCategories()  
-  categories && insertCategoris(categories)
+const renderMenuCategories = async () => {
+  const categories = await getMenuCategories()  
+  categories && insertMenuCategoris(categories)
 }
 
-renderCategories()
+renderMenuCategories()

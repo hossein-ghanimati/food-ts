@@ -1,6 +1,6 @@
 import { MenuCategoryType } from "@/assets/types/shared/category.type";
 import { generateCategoryTemplate } from "./utils";
-const insertCategoris = (categories: MenuCategoryType[]) => {
+const insertMenuCategoris = (categories: MenuCategoryType[]) => {
   const categoriesWrapper = document.querySelector('.category-list') as HTMLElement;
   
   categories.forEach(category => 
@@ -11,5 +11,5 @@ const insertCategoris = (categories: MenuCategoryType[]) => {
   )
 }
 export {
-  insertCategoris
+  insertMenuCategoris
 }
