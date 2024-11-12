@@ -170,6 +170,10 @@ body {
   border: 1px solid var(--secondary-color-lighter);
   border-radius: 50%;
 }
+.category-list__item .category-icon i {
+  color: black;
+  transform: scale(1.2);
+}
 .category-list__item .category-icon svg {
   fill: black;
   transform: scale(1.2);
