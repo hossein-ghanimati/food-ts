@@ -6,3 +6,8 @@ export  type CategoryType = {
   icon: string;
   foods: FoodType[]
 }
+
+export type MenuCategoryType = Omit< CategoryType, 
+  "_id" | 
+  "foods"
+>

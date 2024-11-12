@@ -1,6 +1,6 @@
-import { CategoryType } from "@/assets/types/shared/category.type";
+import { MenuCategoryType } from "@/assets/types/shared/category.type";
 
-const generateCategoryTemplate = (category: CategoryType) =>
+const generateCategoryTemplate = (category: MenuCategoryType) =>
   `<li class="category-list__item" id="${category.title.toLowerCase()}">
     <a href="#${category.title.toLowerCase()}">
       <div class="category-icon">

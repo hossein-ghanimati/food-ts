@@ -1,4 +1,4 @@
-import {CategoryType} from "@/assets/types/shared/category.type";
+import {CategoryType, MenuCategoryType} from "@/assets/types/shared/category.type";
 import sendApiReq from "../../configs/apiReq";
 
 const getCategories = async () => {
@@ -12,7 +12,7 @@ const getCategories = async () => {
       }
     `
   })
-  const categories: CategoryType[] = response?.data?.categories;
+  const categories: MenuCategoryType[] = response?.data?.categories;
   console.log("Categories =>", categories);
   
   return categories || null
