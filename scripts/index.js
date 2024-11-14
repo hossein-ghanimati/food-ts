@@ -1,6 +1,8 @@
 import {
-  register as registerUser
+  register as registerUser,
+  login as loginUser
 } from "../src/assets/services/axios/requests/shared/auth"
+import { setToLocal } from "../src/assets/ts/utils/browserMemo";
 
 // Sabzlearn.ir project
 
@@ -36,7 +38,7 @@ function clickController({ element, fn }) {
 
 //  Login Handler - sending userData to loginAction
 let userData = {
-  identifier: "",
+  email: "",
   password: "",
 };
 
@@ -47,25 +49,18 @@ let registerData = {
   password: "",
 };
 
-const loginAction = async () => {
-  // Fetch your api here
-  const res = await fetch(`API_LINK`, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(userData), // Put your data
-  });
-
-  const data = await res.json();
-
-  return data;
+const loginAction = async (event) => {
+  event.preventDefault();
+  const response = await loginUser(userData);
+  
+  setToLocal("token", response?.token)
 };
 
 const registerAction = async (event) => {
   event.preventDefault();
   const response = await registerUser(registerData);
   
-  localStorage.setItem("access-token", response.token);
+  setToLocal("token", response?.token)
 };
 
 clickController({
@@ -193,7 +188,7 @@ const login = () => {
     </div>
     <span class="span">Forgot password?</span>
   </div>
-  <button class="button-submit">Sign In</button>
+  <button class="button-submit" onclick="loginAction(event)">Sign In</button>
   <p class="p">Don't have an account? <span id="redirect" class="span">Sign Up</span>
 
   </p><p class="p line">Or With</p>
@@ -226,7 +221,7 @@ C318.115,0,375.068,22.126,419.404,58.936z"></path>
 </button></div></form>`);
 
   useQuery(".login-username-input").addEventListener("keyup", (event) => {
-    userData.identifier = event.target.value;
+    userData.email = event.target.value;
   });
 
   useQuery(".login-password-input").addEventListener("keyup", (event) => {
@@ -240,3 +235,4 @@ C318.115,0,375.068,22.126,419.404,58.936z"></path>
 login();
 
 window.registerAction = registerAction
+window.loginAction = loginAction

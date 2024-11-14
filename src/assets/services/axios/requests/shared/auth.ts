@@ -1,15 +1,7 @@
 import { UserType } from "@/assets/types/shared/user.type"
 import sendApiReq from "../../configs/apiReq"
 import { RegisterInputType, RegisterOutputType } from "@/assets/types/shared/auth/register.type"
-
-const login = async (userData: {
-  identifier: string
-  password: string
-}) => {
-  const response = await sendApiReq()("/auth/login", userData).catch(() => {})
-  const token = response?.data?.accessToken
-  return token || null
-}
+import { LoginInputType } from "@/assets/types/shared/auth/login.type";
 // const getUser = async () => {
 //   const getReq = await sendApiReq(true).get("/user")
 //   const user: UserType | null = getReq.status < 300 ? getReq.data : null;
@@ -42,6 +34,29 @@ const register = async (userData: RegisterInputType) => {
   })  
   const data: RegisterOutputType = response?.data?.registerUser
   console.log("User Registered Data =>", data)
+  
+  return data || null
+}
+
+const login = async (userData: LoginInputType) => {
+  console.log("User Login Data -->", userData);
+  
+  const response = await sendApiReq()("/graphql", {
+    query: `
+    mutation {
+      loginUser(email: "${userData.email}", password: "${userData.password}") {
+        token
+        user {
+          username
+          email
+          role
+        }
+      }
+    }
+  `
+  })  
+  const data: RegisterOutputType = response?.data?.loginUser
+  console.log("User Logined Data =>", data)
   
   return data || null
 }
