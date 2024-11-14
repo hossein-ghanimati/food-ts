@@ -1,5 +1,5 @@
 import {extractionErrorMessages} from "../src/assets/services/errors/form.error"
-import {showToastSwal} from "../src/assets/ts/utils/swal"
+import {showMsgSwal, showToastSwal} from "../src/assets/ts/utils/swal"
 
 import {
   register as registerUser,
@@ -8,6 +8,9 @@ import {
 import {
   loginSchema
 } from "../src/assets/services/validation/login"
+import {
+  registerSchema
+} from "../src/assets/services/validation/register"
 import { setToLocal } from "../src/assets/ts/utils/browserMemo";
 
 // Sabzlearn.ir project
@@ -65,6 +68,7 @@ const loginAction = (event) => {
       try {
         const response = await loginUser(userData);  
         setToLocal("token", response?.token)
+        showMsgSwal({title: "Your Login Was Successful", icon: "success"})  
       } catch (error) {
         showToastSwal({title: error.message, icon: "error"})
       }
@@ -76,9 +80,24 @@ const loginAction = (event) => {
 
 const registerAction = async (event) => {
   event.preventDefault();
-  const response = await registerUser(registerData);
   
-  setToLocal("token", response?.token)
+  registerSchema.validate(registerData, {
+    abortEarly: false
+  })
+    .then(async () => {
+      try {
+        const response = await registerUser(registerData);
+        setToLocal("token", response?.token)
+        showMsgSwal({title: "Your Registration Was Successful", icon: "success"})  
+
+      } catch (error) {
+        showToastSwal({title: error.message, icon: "error"})
+      }
+      
+    }).catch(errors => {
+      const errorMessages = extractionErrorMessages(errors)
+      showToastSwal({title: errorMessages[0], icon: "warning",})
+    })
 };
 
 clickController({

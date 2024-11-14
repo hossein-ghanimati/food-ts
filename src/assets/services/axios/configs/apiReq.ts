@@ -1,6 +1,6 @@
 import axios from "axios";
 import { getFromLocal } from "../../../ts/utils/browserMemo";
-import { extractionErrorMessage, hasError, isError } from "../errorHandlers/errorHandler";
+import { extractionErrorMessage, hasError } from "../errorHandlers/errorHandler";
 
 
 

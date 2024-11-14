@@ -7,7 +7,7 @@ type showMsgSwalType = {
   btnText?: string,
 }
 
-const showMsgSwal = ({ title, icon, hasClose = false, btnText = "باشه" }: showMsgSwalType) => {
+const showMsgSwal = ({ title, icon, hasClose = false, btnText = "OK" }: showMsgSwalType) => {
   Swal.fire({
     title,
     icon,
@@ -48,7 +48,7 @@ type showConfirmSwalType = {
   callBack: (result: SweetAlertResult) => void
 }
 
-const showConfirmSwal = ({ title, text, icon, cancelText = "نه", btnText = "باشه", callBack, hasClose = false }: showConfirmSwalType) => {
+const showConfirmSwal = ({ title, text, icon, cancelText = "No", btnText = "OK", callBack, hasClose = false }: showConfirmSwalType) => {
   Swal.fire({
     title,
     text,
@@ -72,7 +72,7 @@ type showInputSwalType = {
   callBack: (result: SweetAlertResult) => void
 }
 
-const showInputSwal = ({ title, text, icon, inputType: input = "text", cancelText = "نه", btnText = "باشه", callBack, hasClose = false }: showInputSwalType) => {
+const showInputSwal = ({ title, text, icon, inputType: input = "text", cancelText = "No", btnText = "OK", callBack, hasClose = false }: showInputSwalType) => {
   Swal.fire({
     title,
     text,
