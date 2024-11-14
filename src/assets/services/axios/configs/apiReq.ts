@@ -1,5 +1,6 @@
 import axios from "axios";
 import { getFromLocal } from "../../../ts/utils/browserMemo";
+import { extractionErrorMessage, hasError, isError } from "../errorHandlers/errorHandler";
 
 
 
@@ -21,7 +22,11 @@ const sendApiReq = (includeAuthorization = false) => {
   })
 
   apiReq.interceptors.response.use(
-    (response) => {
+    (response) => {    
+      if(hasError(response)) {
+        throw new Error(extractionErrorMessage(response));
+      };
+      
       return response.data    
     },
     err => {

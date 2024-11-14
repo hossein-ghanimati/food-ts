@@ -1,7 +1,13 @@
+import {extractionErrorMessages} from "../src/assets/services/errors/form.error"
+import {showToastSwal} from "../src/assets/ts/utils/swal"
+
 import {
   register as registerUser,
   login as loginUser
 } from "../src/assets/services/axios/requests/shared/auth"
+import {
+  loginSchema
+} from "../src/assets/services/validation/login"
 import { setToLocal } from "../src/assets/ts/utils/browserMemo";
 
 // Sabzlearn.ir project
@@ -49,11 +55,23 @@ let registerData = {
   password: "",
 };
 
-const loginAction = async (event) => {
+const loginAction = (event) => {
   event.preventDefault();
-  const response = await loginUser(userData);
-  
-  setToLocal("token", response?.token)
+
+  loginSchema.validate(userData, {
+    abortEarly: false
+  })
+    .then(async () => {
+      try {
+        const response = await loginUser(userData);  
+        setToLocal("token", response?.token)
+      } catch (error) {
+        showToastSwal({title: error.message, icon: "error"})
+      }
+    }).catch(errors => {
+      const errorMessages = extractionErrorMessages(errors)
+      showToastSwal({title: errorMessages[0], icon: "warning",})
+    })
 };
 
 const registerAction = async (event) => {

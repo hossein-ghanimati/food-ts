@@ -1,14 +1,15 @@
 import * as Yup from "yup"
 
 const loginSchema = Yup.object().shape({
-  identifier: Yup
+  email: Yup
     .string()
-    .required("شناسه ورود الزامی می‌باشد")
+    .email("Email Isn't Valid")
+    .required("Email Is Required")
   ,
   password: Yup
     .string()
-    .min(8, "رمز عبور باید حداقل ۸ کاراکتر باشد")
-    .required("رمز عبور الزامی می‌باشد"),
+    .required("Password Is Required")
+    .min(8, "Password Should Be Atleast 8 characters")
 })
 
 export {
