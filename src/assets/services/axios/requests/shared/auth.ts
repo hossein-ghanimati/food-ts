@@ -1,4 +1,3 @@
-import { UserType } from "@/assets/types/shared/user.type"
 import sendApiReq from "../../configs/apiReq"
 import { RegisterInputType, RegisterOutputType } from "@/assets/types/shared/auth/register.type"
 import { LoginInputType } from "@/assets/types/shared/auth/login.type";

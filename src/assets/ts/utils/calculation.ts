@@ -1,5 +1,4 @@
-import { WithCreatedAt } from "@/assets/types/share/withCreatedAt.type";
-
+import { WithCreatedAt } from "@/assets/types/shared/withCreatedAt.type"
 const MILLISECONDS_IN_SECOND = 1000;
 const MILLISECONDS_IN_MINUTE = MILLISECONDS_IN_SECOND * 60;
 const MILLISECONDS_IN_HOUR = MILLISECONDS_IN_MINUTE * 60;
