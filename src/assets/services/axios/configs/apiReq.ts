@@ -22,16 +22,16 @@ const sendApiReq = (includeAuthorization = false) => {
   })
 
   apiReq.interceptors.response.use(
-    (response) => {    
+    (response) => {      
       if(hasError(response)) {
-        throw new Error(extractionErrorMessage(response));
+        throw new Error(extractionErrorMessage(response || "Connection Error"));
       };
       
       return response.data    
     },
     err => {
       console.warn("Your Req Has An Err :", err)
-      return null
+      throw new Error(err.message);
     }
   )
   
