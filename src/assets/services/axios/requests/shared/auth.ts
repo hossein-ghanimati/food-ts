@@ -1,6 +1,7 @@
 import sendApiReq from "../../configs/apiReq"
 import { RegisterInputType, RegisterOutputType } from "@/assets/types/shared/auth/register.type"
 import { LoginInputType } from "@/assets/types/shared/auth/login.type";
+import { GetMeType } from "@/assets/types/shared/auth/getMe.type";
 // const getUser = async () => {
 //   const getReq = await sendApiReq(true).get("/user")
 //   const user: UserType | null = getReq.status < 300 ? getReq.data : null;
@@ -61,11 +62,32 @@ const login = async (userData: LoginInputType) => {
   
   return data || null
 }
+
+const getMe = async () => {  
+  
+    const response = await sendApiReq(true)("/graphql", {
+      query: `
+      query {
+        getMe {
+          username,
+          email,
+          role
+        }
+      }
+    `
+    })  
+  
+
+  
+  const data: GetMeType = response.data.data.getMe 
+  
+  return data || null
+}
   
 
 
 export {
   login,
   register,
-  // getUser
+  getMe
 }
