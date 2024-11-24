@@ -15,12 +15,10 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
       integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
       crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+      referrerpolicy="no-referrer" />
     <link
       rel="stylesheet"
-      href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
-    />
+      href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
 
     <title>Admin Dashboard Panel</title>
   </head>
@@ -30,7 +28,7 @@
     <nav>
       <div class="logo-name">
         <div class="logo-image">
-          <img src="images/logo.png" alt="" />
+          <img src="images/logo.png" alt />
         </div>
 
         <span class="logo_name">CodingLab</span>
@@ -39,25 +37,25 @@
       <div class="menu-items">
         <ul class="nav-links">
           <li>
-            <a href="/panel/">
+            <a href="../../">
               <i class="uil uil-estate"></i>
               <span class="link-name">Dahsboard</span>
             </a>
           </li>
           <li class="active-tab">
-            <a href="/panel/pages/Courses/">
+            <a href="../Courses/">
               <i class="uil uil-files-landscapes"></i>
               <span class="link-name">Courses</span>
             </a>
           </li>
           <li>
-            <a href="/panel/pages/Users/">
+            <a href="../Users/">
               <i class="uil uil-files-landscapes"></i>
               <span class="link-name">Users</span>
             </a>
           </li>
           <li>
-            <a href="/panel/pages/Orders/">
+            <a href="../Orders/">
               <i class="fa-solid fa-receipt"></i>
               <span class="link-name">Orders</span>
             </a>
@@ -119,7 +117,7 @@
           <input type="text" placeholder="Search here..." />
         </div>
 
-        <img src="images/profile.jpg" alt="" />
+        <img src="images/profile.jpg" alt />
       </div>
 
       <div class="dash-content">
@@ -127,7 +125,7 @@
         <div class="overview">
           <div class="title">
             <i class="uil uil-tachometer-fast-alt"></i>
-            <span class="text">Dashboard | orders</span>
+            <span class="text">Dashboard | users</span>
           </div>
         </div>
 
@@ -142,65 +140,17 @@
                 <span> username </span>
               </div>
               <div>
-                <span> Product </span>
+                <span> email </span>
               </div>
               <div>
-                <span> Status </span>
-              </div>
-              <div>
-                <span> Price </span>
+                <span> role </span>
               </div>
               <div>
                 <span> MODERATE </span>
               </div>
             </header>
-            <main>
+            <main class="users-table">
               <!-- Table Row -->
-              <div class="table-row">
-                <p class="id">#1</p>
-                <p>Mr. amin saeedi</p>
-                <div class="flex center">
-                  <a to="" class="link"> Pizza Tanoori (2x) </a>
-                </div>
-                <div class="flex center">
-                  <p class="green-status">On going..</p>
-                </div>
-                <div class="flex center">
-                  <p class="price">299.99T</p>
-                </div>
-                <div class="flex center">
-                  <button class="ui-button error">
-                    <i class="fa-solid fa-trash-can"></i>
-                  </button>
-                  <button class="ui-button primary">
-                    <i class="fa-solid fa-pen-to-square"></i>
-                  </button>
-                </div>
-              </div>
-              <!-- Table Row -->
-
-              <!-- Table Row -->
-              <div class="table-row">
-                <p class="id">#1</p>
-                <p>Peyman Ahmadi</p>
-                <div class="flex center">
-                  <a to="" class="link"> Bandari  (2x) </a>
-                </div>
-                <div class="flex center">
-                  <p class="yellow-status">Pending..</p>
-                </div>
-                <div class="flex center">
-                  <p class="price">4,999.99T</p>
-                </div>
-                <div class="flex center">
-                  <button class="ui-button error">
-                    <i class="fa-solid fa-trash-can"></i>
-                  </button>
-                  <button class="ui-button primary">
-                    <i class="fa-solid fa-pen-to-square"></i>
-                  </button>
-                </div>
-              </div>
             </main>
             <footer class="flex end">
               <div class="pagination flex">
@@ -222,9 +172,11 @@
         </section>
       </div>
     </section>
-
     
-    <script type="module" src="/src/assets/ts/panel/index/panel.index.ts"></script>
-    <script type="module" src="/src/assets/ts/panel/orders/orders.ts"></script>
+    <script type="module"
+      src="/src/assets/ts/panel/index/panel.index.ts"></script>
+    <script type="module" src="/src/assets/ts/panel/users/users.ts"></script>
   </body>
 </html>
+
+

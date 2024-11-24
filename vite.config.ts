@@ -1,10 +1,12 @@
 import { defineConfig } from 'vite'
-import tsconfigPaths from "vite-tsconfig-paths";
-// https://vitejs.dev/config/
+import tsconfigPaths from 'vite-tsconfig-paths'
+
 export default defineConfig({
-  plugins: [tsconfigPaths()],
-  base: "./",
+  plugins: [
+    tsconfigPaths(),
+  ],
+  base: './',
   server: {
-    port: 3000
-  }
+    port: 3000,
+  },
 })
