@@ -5,3 +5,4 @@ export type UserType = {
   password: string;
   role: "ADMIN" | "USER"
 }
+export type PanelUserType = Omit<UserType, "password">
