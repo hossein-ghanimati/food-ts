@@ -80,6 +80,7 @@ const getMe = async () => {
 
   
   const data: GetMeType = response.data.getMe 
+  console.log("Me =>", data);
   
   return data || null
 }
