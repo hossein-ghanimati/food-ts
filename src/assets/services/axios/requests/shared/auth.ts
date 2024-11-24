@@ -79,7 +79,7 @@ const getMe = async () => {
   
 
   
-  const data: GetMeType = response.data.data.getMe 
+  const data: GetMeType = response.data.getMe 
   
   return data || null
 }
