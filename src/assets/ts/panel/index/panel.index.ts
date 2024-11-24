@@ -1,4 +1,5 @@
-import { getFromLocal } from "../../utils/browserMemo";
+import { hasClass, toggleClass } from "@/assets/types/shared/elems";
+import { getFromLocal, setToLocal } from "../../utils/browserMemo";
 
 const body = document.querySelector("body") as HTMLElement
 const modeToggle = body.querySelector(".mode-toggle") as HTMLElement;
@@ -8,29 +9,27 @@ const sidebarToggle = body.querySelector(".sidebar-toggle") as HTMLElement;
 const handleTheme = () => {
   const theme = getFromLocal("mode");
   theme === "dark" &&
-    body.classList.toggle("dark");
-
+    toggleClass(body, "dark");
 }
+handleTheme();
 
-let getStatus = localStorage.getItem("status");
-if (getStatus && getStatus === "close") {
-    sidebar.classList.toggle("close");
+const handleStatus = () => {
+  const getStatus = getFromLocal("status");
+  getStatus === "close" &&
+    toggleClass(sidebar, "close");
 }
+handleStatus();
 
 modeToggle.addEventListener("click", () => {
-    body.classList.toggle("dark");
-    if (body.classList.contains("dark")) {
-        localStorage.setItem("mode", "dark");
-    } else {
-        localStorage.setItem("mode", "light");
-    }
+  toggleClass(body, "dark");
+  hasClass(body, "dark")
+    ? setToLocal("mode", "dark")
+    : setToLocal("mode", "light")
 });
 
 sidebarToggle.addEventListener("click", () => {
-    sidebar.classList.toggle("close");
-    if (sidebar.classList.contains("close")) {
-        localStorage.setItem("status", "close");
-    } else {
-        localStorage.setItem("status", "open");
-    }
+  toggleClass(sidebar, "close");
+  hasClass(sidebar, "close")
+    ? setToLocal("mode", "close")
+    : setToLocal("mode", "open")
 })
