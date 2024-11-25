@@ -18,7 +18,22 @@ const getUsers = async () => {
   const data: PanelUserType[] = response.data.users
   return data || null
 }
+const removeUser = async (userID: string) => {
+  const response = await sendApiReq(true)("graphql", {
+    query: `
+      mutation {
+        removeUser(id: "${userID}"){
+          username
+        }
+      }
+    `
+  })
+
+  const data : {username: string} = response.data.removeUser
+  return data || null
+}
 
 export {
-  getUsers
+  getUsers,
+  removeUser
 }
