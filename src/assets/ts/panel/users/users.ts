@@ -1,5 +1,6 @@
-import { getUsers } from "@/assets/services/axios/requests/shared/users";
+import { getUsers, removeUser } from "@/assets/services/axios/requests/shared/users";
 import { insertUsers } from "./funcs/users";
+import { showConfirmSwal, showMsgSwal } from "../../utils/swal";
 
 const renderUsers = async () => {
   const users = await getUsers()
@@ -9,8 +10,29 @@ renderUsers()
 
 
 const removeUserHandler = (userID: string) => {
-  console.log(userID);
-  
+  showConfirmSwal({
+    title: "Are You Sure To Remove User ?",
+    icon: "question",
+    btnText: "No",
+    cancelText: "Yes",
+    callBack: async result => {
+      if (result.isConfirmed) return false;
+      try {
+        const removedUser = await removeUser(userID)
+        showMsgSwal({
+          title: `${removedUser.username} Removed.`,
+          icon: "success"
+        })
+        renderUsers()
+      } catch (error) {
+        const errorMessage = (error as Error).message
+        showMsgSwal({
+          title: errorMessage,
+          icon: "error"
+        })
+      }
+    }
+  })  
 }
 declare global {
   interface Window {
