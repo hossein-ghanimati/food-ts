@@ -10,7 +10,7 @@ const generateUserTdTemplate = (user: PanelUserType) => `
         }-status">${user.role}</p>
     </div>
     <div class="flex center">
-      <button class="ui-button error">
+      <button class="ui-button error" onClick="removeUserHandler('${user._id}')">
         <i class="fa-solid fa-trash-can"></i>
       </button>
       <button class="ui-button primary">
