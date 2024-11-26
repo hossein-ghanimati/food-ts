@@ -24,8 +24,12 @@ const removeUrlParam = (param: string, customSearchParams = "") => {
   history.pushState({}, "", `${location.pathname}?${searchParams.toString()}`)
 }
 
+const redirectTo = (url: string) => 
+  location.href === url
+
 export{
   getUrlParam,
   setUrlParam,
-  removeUrlParam
+  removeUrlParam,
+  redirectTo
 }
