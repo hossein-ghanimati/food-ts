@@ -1,4 +1,4 @@
-import { AddOrderOutputType } from "@/assets/types/shared/order.type"
+import { AddOrderOutputType, userOrdersType } from "@/assets/types/shared/order.type"
 import sendApiReq from "../../configs/apiReq"
 
 const addOrder = async (orderID: string, count: number) => {
@@ -10,7 +10,8 @@ const addOrder = async (orderID: string, count: number) => {
           food: "${orderID}"
         }){
           food{
-            name
+            name,
+            price
           },
           count
         }
@@ -22,6 +23,28 @@ const addOrder = async (orderID: string, count: number) => {
   return data || null
 }
 
+const getUserOrders = async () => {
+  const response = await sendApiReq(true)("graphql", {
+    query: `
+      query {
+        userOrders{
+          food{
+            name,
+            price
+          },
+          count
+        }
+      }
+    `
+  })
+
+  const data: userOrdersType[] = response.data.userOrders;
+  console.log("User Orders ->", data)
+
+  return data || null
+}
+
 export {
-  addOrder
+  addOrder,
+  getUserOrders
 }

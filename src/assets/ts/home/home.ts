@@ -1,9 +1,9 @@
 import { getMenuCategories } from "@/assets/services/axios/requests/shared/categories.reqs"
-import { insertLandingFoods, insertMenuCategoris } from "./funcs/home"
+import { insertLandingFoods, insertMenuCategoris, insertOrders } from "./funcs/home"
 import { getLandingFoods } from "@/assets/services/axios/requests/shared/food.reqs"
 import { isUserLogin } from "../utils/auth"
 import { showInputSwal, showToastSwal } from "../utils/swal"
-import { addOrder } from "@/assets/services/axios/requests/shared/orders.reqs"
+import { addOrder, getUserOrders } from "@/assets/services/axios/requests/shared/orders.reqs"
 
 const renderMenuCategories = async () => {
   const categories = await getMenuCategories()  
@@ -17,6 +17,11 @@ const renderLandingFoods = async () => {
 }
 renderLandingFoods()
 
+const renderLatestOrders = async () => {
+  const orders = await getUserOrders()
+  orders && insertOrders(orders)
+}
+renderLatestOrders()
 
 const addOrderHandler = (orderID: string) => {
   const isLogin = isUserLogin()

@@ -1,5 +1,6 @@
 import { MenuCategoryType } from "@/assets/types/shared/category.type";
 import { LandingFoodType } from "@/assets/types/shared/food.type";
+import { userOrdersType } from "@/assets/types/shared/order.type";
 
 const generateMenuCategoryTemplate = (category: MenuCategoryType) =>
   `<li class="category-list__item" id="${category.title.toLowerCase()}">
@@ -41,6 +42,9 @@ const generateLandingFoodTemplate = (food: LandingFoodType) =>
     </div>
   </li>`
 
+const generateOrderTemplate = (order: userOrdersType) => `
+
+`
 
 export {
   generateMenuCategoryTemplate,
