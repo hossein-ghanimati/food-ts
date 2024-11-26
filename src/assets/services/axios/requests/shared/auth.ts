@@ -2,18 +2,6 @@ import sendApiReq from "../../configs/apiReq"
 import { RegisterInputType, RegisterOutputType } from "@/assets/types/shared/auth/register.type"
 import { LoginInputType } from "@/assets/types/shared/auth/login.type";
 import { GetMeType } from "@/assets/types/shared/auth/getMe.type";
-// const getUser = async () => {
-//   const getReq = await sendApiReq(true).get("/user")
-//   const user: UserType | null = getReq.status < 300 ? getReq.data : null;
-
-//   return{
-//     user: user,
-//     isLogin: user ? true : false
-//   }
-// }
-
-
-
 
 const register = async (userData: RegisterInputType) => {
   console.log("New User Data -->", userData);
@@ -21,7 +9,7 @@ const register = async (userData: RegisterInputType) => {
   const response = await sendApiReq()("/graphql", {
     query: `
     mutation {
-      registerUser(username: "${userData.username}", email: "${userData.email}", password: "${userData.password}") {
+      user: registerUser(username: "${userData.username}", email: "${userData.email}", password: "${userData.password}") {
         token
         user {
           username
@@ -32,7 +20,7 @@ const register = async (userData: RegisterInputType) => {
     }
   `
   })  
-  const data: RegisterOutputType = response?.data?.registerUser
+  const data: RegisterOutputType = response?.data?.user
   console.log("User Registered Data =>", data)
   
   return data || null
@@ -44,7 +32,7 @@ const login = async (userData: LoginInputType) => {
   const response = await sendApiReq()("/graphql", {
     query: `
     mutation {
-      loginUser(email: "${userData.email}", password: "${userData.password}") {
+      user: loginUser(email: "${userData.email}", password: "${userData.password}") {
         token
         user {
           username
@@ -57,7 +45,7 @@ const login = async (userData: LoginInputType) => {
   })  
 
   
-  const data: RegisterOutputType = response?.data?.loginUser
+  const data: RegisterOutputType = response?.data?.user
   console.log("User Logined Data =>", data)
   
   return data || null
@@ -68,7 +56,7 @@ const getMe = async () => {
     const response = await sendApiReq(true)("/graphql", {
       query: `
       query {
-        getMe {
+        me: getMe {
           username,
           email,
           role
@@ -79,7 +67,7 @@ const getMe = async () => {
   
 
   
-  const data: GetMeType = response.data.getMe 
+  const data: GetMeType = response.data.me 
   console.log("Me =>", data);
   
   return data || null
