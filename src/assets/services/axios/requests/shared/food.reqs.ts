@@ -6,6 +6,7 @@ const getLandingFoods = async () => {
     query: `
       query {
         foods {
+          _id
           name,
           price,
           category {

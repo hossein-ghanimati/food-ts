@@ -1,15 +1,14 @@
 import { CategoryType } from "./category.type";
 
 export type FoodType = {
-  id: string;
+  _id: string;
   name: string;
   price: number;
   category: CategoryType;
   inventory: number;
 }
 
-export type LandingFoodType = Omit<FoodType, 
-  "id" 
+export type LandingFoodType = Omit<FoodType,
   | "inventory"
   | "category"
 > & {
