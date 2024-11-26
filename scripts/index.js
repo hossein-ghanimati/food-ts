@@ -2,6 +2,13 @@ import {extractionErrorMessages} from "../src/assets/services/errors/form.error"
 import {showMsgSwal, showToastSwal} from "../src/assets/ts/utils/swal"
 
 import {
+  isAdmin
+} from "/src/assets/ts/utils/auth.ts"
+import {
+  redirectTo
+} from "/src/assets/ts/utils/url.ts"
+
+import {
   register as registerUser,
   login as loginUser
 } from "../src/assets/services/axios/requests/shared/auth"
@@ -68,7 +75,11 @@ const loginAction = (event) => {
       try {
         const response = await loginUser(userData);  
         setToLocal("token", response?.token)
-        showMsgSwal({title: "Your Login Was Successful", icon: "success"})  
+
+        isAdmin(response.user) 
+          ? redirectTo("/panel/") 
+          : showMsgSwal({title: "Your Login Was Successful", icon: "success"})  
+        ;
       } catch (error) {
         showToastSwal({title: error.message, icon: "error"})
       }
@@ -88,7 +99,9 @@ const registerAction = async (event) => {
       try {
         const response = await registerUser(registerData);
         setToLocal("token", response?.token)
-        showMsgSwal({title: "Your Registration Was Successful", icon: "success"})  
+        isAdmin(response.user) 
+          ? redirectTo("/panel/")
+          : showMsgSwal({title: "Your Registration Was Successful", icon: "success"})  
 
       } catch (error) {
         showToastSwal({title: error.message, icon: "error"})

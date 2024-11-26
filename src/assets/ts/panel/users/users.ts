@@ -1,6 +1,6 @@
 import { getUsers, removeUser } from "@/assets/services/axios/requests/shared/users";
 import { insertUsers } from "./funcs/users";
-import { showConfirmSwal, showMsgSwal } from "../../utils/swal";
+import { showConfirmSwal, showMsgSwal, showToastSwal } from "../../utils/swal";
 
 const renderUsers = async () => {
   const users = await getUsers()
@@ -19,14 +19,14 @@ const removeUserHandler = (userID: string) => {
       if (result.isConfirmed) return false;
       try {
         const removedUser = await removeUser(userID)
-        showMsgSwal({
+        showToastSwal({
           title: `${removedUser.username} Removed.`,
           icon: "success"
         })
         renderUsers()
       } catch (error) {
         const errorMessage = (error as Error).message
-        showMsgSwal({
+        showToastSwal({
           title: errorMessage,
           icon: "error"
         })

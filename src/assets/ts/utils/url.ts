@@ -25,7 +25,7 @@ const removeUrlParam = (param: string, customSearchParams = "") => {
 }
 
 const redirectTo = (url: string) => 
-  location.href === url
+  location.href = url
 
 export{
   getUrlParam,
