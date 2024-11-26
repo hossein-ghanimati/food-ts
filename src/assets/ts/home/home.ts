@@ -2,7 +2,8 @@ import { getMenuCategories } from "@/assets/services/axios/requests/shared/categ
 import { insertLandingFoods, insertMenuCategoris } from "./funcs/home"
 import { getLandingFoods } from "@/assets/services/axios/requests/shared/food.reqs"
 import { isUserLogin } from "../utils/auth"
-import { showToastSwal } from "../utils/swal"
+import { showInputSwal, showToastSwal } from "../utils/swal"
+import { addOrder } from "@/assets/services/axios/requests/shared/orders.reqs"
 
 const renderMenuCategories = async () => {
   const categories = await getMenuCategories()  
@@ -17,22 +18,34 @@ const renderLandingFoods = async () => {
 renderLandingFoods()
 
 
-const addOrderHandler = async (orderID: string) => {
+const addOrderHandler = (orderID: string) => {
   const isLogin = isUserLogin()
   if(isLogin){
-    try {
-      await addOrder();
-      showToastSwal({
-        title: "Order Added Succcessfully.",        
-        icon: "success",
-      })
-    } catch (error) {
-      const errorMessage = (error as Error).message
-      showToastSwal({
-        title: errorMessage,
-        icon: "error",
-      })
-    }
+    showInputSwal({
+      title: "How Do You Want ?",
+      icon: "question",
+      hasClose: true,
+      callBack: async result => {
+        if (result.isConfirmed) {
+          try {
+            const newOrder = await addOrder(orderID, +result.value || 1);
+            showToastSwal({
+              title: `${newOrder.food.name} Added Succcessfully. (${newOrder.count} Number)`,        
+              icon: "success",
+            })
+          }
+          catch (error) {
+            const errorMessage = (error as Error).message
+            console.log(errorMessage);
+            
+            showToastSwal({
+              title: errorMessage,
+              icon: "error",
+            })
+          }
+        }
+      }
+    })
   }else{
     showToastSwal({
       title: "You Shoud Be Login In First ...",
@@ -40,3 +53,10 @@ const addOrderHandler = async (orderID: string) => {
     })
   }
 }
+declare global {
+  interface Window {
+    addOrderHandler: (orderID: string) => void; 
+  }
+}
+
+window.addOrderHandler = addOrderHandler

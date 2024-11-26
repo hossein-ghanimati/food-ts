@@ -18,7 +18,7 @@ const generateLandingFoodTemplate = (food: LandingFoodType) =>
         class="restaurant-image"
         src="https://i.loli.net/2020/04/06/ZOsdvCkE6jDN8Ka.png"
     /></a>
-    <div class="restaurant-name">${food.name} <a onclick="addOrder('${food._id}')">(Add Order)</a></div>
+    <div class="restaurant-name">${food.name} <a onclick="addOrderHandler('${food._id}')">(Add Order)</a></div>
     <div class="restaurant-info">
       <span class="restaurant-rate"
         ><svg

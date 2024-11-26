@@ -8,8 +8,12 @@ export type OrderType = {
   isDeliver: boolean;
 }
 
-export type AddOrderOutputType = Omit<
-  OrderType
-  , "user" 
-  | "isDeliver"
->
+export type AddOrderOutputType = {
+  count: number;
+  food: {
+    name: string,
+    price: number
+  }
+}
+
+export type userOrdersType = AddOrderOutputType

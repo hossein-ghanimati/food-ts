@@ -18,6 +18,10 @@ body {
   --info-color: rgb(80, 62, 157);
 }
 
+a {
+  cursor: pointer;
+}
+
 .dashboard {
   display: flex;
   margin: 8px;

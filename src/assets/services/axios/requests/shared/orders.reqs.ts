@@ -6,9 +6,14 @@ const addOrder = async (orderID: string, count: number) => {
     query: `
       mutation {
         createOrder(input: {
-          food: "${orderID}",
-          count: ${count}
-        })
+          count: ${count},
+          food: "${orderID}"
+        }){
+          food{
+            name
+          },
+          count
+        }
       }
     `
   })
