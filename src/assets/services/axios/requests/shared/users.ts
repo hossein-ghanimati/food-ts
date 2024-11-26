@@ -22,14 +22,14 @@ const removeUser = async (userID: string) => {
   const response = await sendApiReq(true)("graphql", {
     query: `
       mutation {
-        removeUser(id: "${userID}"){
+        user: removeUser(id: "${userID}"){
           username
         }
       }
     `
   })
 
-  const data : {username: string} = response.data.removeUser
+  const data : {username: string} = response.data.user
   return data || null
 }
 
