@@ -1,6 +1,6 @@
 import { MenuCategoryType } from "@/assets/types/shared/category.type";
 import { LandingFoodType } from "@/assets/types/shared/food.type";
-import { userOrdersType } from "@/assets/types/shared/order.type";
+import { UserOrderType } from "@/assets/types/shared/order.type";
 
 const generateMenuCategoryTemplate = (category: MenuCategoryType) =>
   `<li class="category-list__item" id="${category.title.toLowerCase()}">
@@ -42,7 +42,7 @@ const generateLandingFoodTemplate = (food: LandingFoodType) =>
     </div>
   </li>`
 
-const generateOrderTemplate = (order: userOrdersType) => `
+const generateOrderTemplate = (order: UserOrderType) => `
   <li class="food-list__item">
     <img class="food-image" src="https://i.loli.net/2020/04/06/ZOsdvCkE6jDN8Ka.png">
     <div class="food-buy-amount">${order.count} x</div>

@@ -16,4 +16,16 @@ export type AddOrderOutputType = {
   }
 }
 
-export type userOrdersType = AddOrderOutputType
+export type PanelOrderType = {
+  user: {
+    username: string
+  }
+  food: {
+    name: string,
+    price: number
+  }
+  count: number,
+  isDeliver: boolean
+}
+
+export type UserOrderType = AddOrderOutputType
