@@ -43,10 +43,16 @@ const generateLandingFoodTemplate = (food: LandingFoodType) =>
   </li>`
 
 const generateOrderTemplate = (order: userOrdersType) => `
-
+  <li class="food-list__item">
+    <img class="food-image" src="https://i.loli.net/2020/04/06/ZOsdvCkE6jDN8Ka.png">
+    <div class="food-buy-amount">${order.count} x</div>
+    <div class="food-name">${order.food.name}</div>
+    <div class="food-price">$${order.food.price}</div>
+  </li>
 `
 
 export {
   generateMenuCategoryTemplate,
-  generateLandingFoodTemplate
+  generateLandingFoodTemplate,
+  generateOrderTemplate
 }

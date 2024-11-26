@@ -1,7 +1,8 @@
 import { MenuCategoryType } from "@/assets/types/shared/category.type";
-import { generateLandingFoodTemplate, generateMenuCategoryTemplate } from "./utils";
+import { generateLandingFoodTemplate, generateMenuCategoryTemplate, generateOrderTemplate } from "./utils";
 import { LandingFoodType } from "@/assets/types/shared/food.type";
 import { userOrdersType } from "@/assets/types/shared/order.type";
+import { emptyTheElem } from "../../utils/elems";
 const insertMenuCategoris = (categories: MenuCategoryType[]) => {
   const categoriesWrapper = document.querySelector('.category-list') as HTMLElement;
   
@@ -24,13 +25,14 @@ const insertLandingFoods = (foods: LandingFoodType[]) => {
 }
 const insertOrders = (orders: userOrdersType[]) => {
   const ordersWrapper = document.querySelector('.food-list') as HTMLElement;
+  emptyTheElem(ordersWrapper)
   
-  // orders.forEach(food => 
-  //     ordersWrapper.insertAdjacentHTML(
-  //       "beforeend",
-  //       generateOrderTemplate(food)
-  //     )
-  // )
+  orders.forEach(food => 
+      ordersWrapper.insertAdjacentHTML(
+        "beforeend",
+        generateOrderTemplate(food)
+      )
+  )
 }
 export {
   insertMenuCategoris,

@@ -7,7 +7,7 @@ import { addOrder, getUserOrders } from "@/assets/services/axios/requests/shared
 
 const renderMenuCategories = async () => {
   const categories = await getMenuCategories()  
-  categories && insertMenuCategoris(categories)
+  categories && insertMenuCategoris([...categories].splice(-8))
 }
 renderMenuCategories()
 
@@ -19,7 +19,7 @@ renderLandingFoods()
 
 const renderLatestOrders = async () => {
   const orders = await getUserOrders()
-  orders && insertOrders(orders)
+  orders && insertOrders([...orders].splice(-5))
 }
 renderLatestOrders()
 
@@ -34,6 +34,7 @@ const addOrderHandler = (orderID: string) => {
         if (result.isConfirmed) {
           try {
             const newOrder = await addOrder(orderID, +result.value || 1);
+            renderLatestOrders()
             showToastSwal({
               title: `${newOrder.food.name} Added Succcessfully. (${newOrder.count} Number)`,        
               icon: "success",
